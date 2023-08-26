@@ -1,41 +1,32 @@
 package com.example.healthtourismapplication.database.entity;
 
-import com.example.healthtourismapplication.model.enums.Role;
-import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import com.example.healthtourismapplication.database.entity.UserInfo;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
+import java.util.stream.Collectors;
 
-@Data
-@Builder
-@NoArgsConstructor
-@AllArgsConstructor
-@Entity
-@Table(name = "users")
-public class User implements UserDetails {
-
-    @Id
-    @GeneratedValue
-    private Integer id;
-    private String userName;
-    private String firstName;
-    private String lastName;
-    private String email;
+public class UserInfoUserDetails implements UserDetails {
+    private String name;
     private String password;
+    private List<GrantedAuthority> authorities;
 
-    @Enumerated(EnumType.STRING)
-    private Role role;
+    public UserInfoUserDetails(UserInfo userInfo) {
+
+        name = userInfo.getName();
+        password = userInfo.getPassword();
+        authorities = Arrays.stream(userInfo.getRoles().split(","))
+                .map(SimpleGrantedAuthority::new)
+                .collect(Collectors.toList());
+    }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return List.of(new SimpleGrantedAuthority(role.name()));
+        return authorities;
     }
 
     @Override
@@ -45,7 +36,7 @@ public class User implements UserDetails {
 
     @Override
     public String getUsername() {
-        return email;
+        return name;
     }
 
     @Override
