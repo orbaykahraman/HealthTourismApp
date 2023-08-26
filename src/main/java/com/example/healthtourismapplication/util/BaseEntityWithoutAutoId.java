@@ -11,7 +11,7 @@ import java.util.Date;
 @MappedSuperclass
 @Data
 @EntityListeners(AuditingEntityListener.class)
-public class BaseEntity {
+public class BaseEntityWithoutAutoId {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY )

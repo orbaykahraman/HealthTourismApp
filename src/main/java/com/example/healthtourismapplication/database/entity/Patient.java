@@ -1,6 +1,7 @@
 package com.example.healthtourismapplication.database.entity;
 
 import com.example.healthtourismapplication.util.BaseEntity;
+import com.example.healthtourismapplication.util.BaseEntityWithoutAutoId;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -8,9 +9,8 @@ import java.util.List;
 
 @Entity
 @Data
-public class Patient extends BaseEntity {
-    private String firstName;
-    private String lastName;
+public class Patient extends BaseEntityWithoutAutoId {
+    private String nameSurname;
     private int age;
     private String gender;
 

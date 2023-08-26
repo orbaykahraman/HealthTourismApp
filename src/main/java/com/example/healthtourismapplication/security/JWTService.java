@@ -1,4 +1,4 @@
-package com.example.healthtourismapplication.securityv2;
+package com.example.healthtourismapplication.security;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;

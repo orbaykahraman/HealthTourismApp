@@ -1,6 +1,5 @@
 package com.example.healthtourismapplication.database.entity;
 
-import com.example.healthtourismapplication.database.entity.UserInfo;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;

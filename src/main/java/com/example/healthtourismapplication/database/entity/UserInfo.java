@@ -7,12 +7,6 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
-
-import java.util.Collection;
-import java.util.List;
 
 @Entity
 @Data
@@ -24,14 +18,18 @@ public class UserInfo {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int userId;
+    private Long userId;
 
     @NotNull
     private String name;
+    @NotNull
+    private String nameSurname;
     @NotNull
     @Email
     private String email;
     @NotNull
     private String password;
     private String roles;
+    private int age;
+    private String gender;
 }

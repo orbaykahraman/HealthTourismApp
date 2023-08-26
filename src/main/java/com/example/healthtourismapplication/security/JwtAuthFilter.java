@@ -1,4 +1,4 @@
-package com.example.healthtourismapplication.securityv2;
+package com.example.healthtourismapplication.security;
 
 import com.example.healthtourismapplication.service.UserInfoUserDetailsService;
 import jakarta.servlet.FilterChain;
