@@ -1,25 +1,27 @@
 package com.example.healthtourismapplication.database.entity;
 
+import com.example.healthtourismapplication.model.enums.Status;
 import com.example.healthtourismapplication.util.BaseEntity;
-import jakarta.persistence.Entity;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToOne;
-import lombok.Data;
+import jakarta.persistence.*;
+import lombok.*;
 
 import java.util.Date;
 
 @Entity
-@Data
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class HotelReservation extends BaseEntity {
 
     private Date reservationDate;
 
-@ManyToOne
-@JoinColumn(name = "patient_id")
-private Patient patient;
+    private Long patientId;
 
-@ManyToOne
-@JoinColumn(name = "hotel_id")
-private  Hotel hotel;
+    @Enumerated(EnumType.STRING)
+    private Status status;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "hotel_id")
+    private Hotel hotel;
 }

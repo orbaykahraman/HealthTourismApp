@@ -1,7 +1,6 @@
 package com.example.healthtourismapplication.mapper;
 
 import com.example.healthtourismapplication.database.entity.Hotel;
-import com.example.healthtourismapplication.database.entity.Patient;
 import com.example.healthtourismapplication.model.requestDTO.HotelRequest;
 import com.example.healthtourismapplication.model.responseDTO.HotelResponse;
 import org.mapstruct.Mapper;

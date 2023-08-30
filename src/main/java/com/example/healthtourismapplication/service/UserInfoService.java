@@ -4,11 +4,15 @@ import com.example.healthtourismapplication.database.entity.Doctor;
 import com.example.healthtourismapplication.database.entity.Patient;
 import com.example.healthtourismapplication.database.entity.UserInfo;
 import com.example.healthtourismapplication.database.repository.UserInfoRepository;
+import com.example.healthtourismapplication.exception.NotFoundWithIdException;
 import com.example.healthtourismapplication.exception.UserNameOrEmailAlreadyExistException;
 import io.micrometer.common.util.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -61,8 +65,24 @@ public class UserInfoService {
             Doctor doctor = new Doctor();
             doctor.setNameSurname(savedUser.getNameSurname());
             doctor.setId(savedUser.getUserId());
-            doctorService.createPatientWhileRegister(doctor);
+            doctorService.createDoctorWhileRegister(doctor);
             logger.info("Doctor created");
         }
+    }
+
+    public UserInfo getUserInfoFromAuth() {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        UserDetails userDetails = (UserDetails) auth.getPrincipal();
+        String username = userDetails.getUsername();
+        return userInfoRepository.findByName(username).orElseThrow(() -> new NotFoundWithIdException("User not found."));
+    }
+    public Patient getPatientFromAuth() {
+        UserInfo userInfo = getUserInfoFromAuth();
+        return patientService.getPatientFromAuth(userInfo);
+    }
+
+    public Doctor getDoctorFromAuth() {
+        UserInfo userInfo = getUserInfoFromAuth();
+        return doctorService.getDoctorFromAuth(userInfo);
     }
 }

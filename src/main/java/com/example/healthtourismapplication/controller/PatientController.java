@@ -31,6 +31,11 @@ public class PatientController {
         return patientService.getAllPatients();
     }
 
+    @DeleteMapping("/{id}")
+    public void deletePatientById(@PathVariable(name = "id") Long id) {
+        patientService.deletePatientById(id);
+    }
+
 //    @PutMapping("/{doctorId}")
 //    public ResponseEntity<PatientResponseDTO> addDoctorToPatient(@PathVariable(name = "doctorId") Long id) {
 //

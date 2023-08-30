@@ -17,4 +17,29 @@ public class GlobalExceptionHandler {
     public ResponseEntity<String> handleUserNameAlreadyExistException(UserNameOrEmailAlreadyExistException ex) {
         return new ResponseEntity<>(ex.getMessage(),HttpStatus.NOT_ACCEPTABLE);
     }
+
+    @ExceptionHandler(NoRemainingSeatsException.class)
+    public ResponseEntity<String> handleNoRemainingSeatsException(NoRemainingSeatsException ex){
+        return new ResponseEntity<>(ex.getMessage(),HttpStatus.NOT_ACCEPTABLE);
+    }
+
+    @ExceptionHandler(NoAppointmentFoundException.class)
+    public ResponseEntity<String> handleNoAppointmentFoundException(NoAppointmentFoundException ex) {
+        return new ResponseEntity<>(ex.getMessage(),HttpStatus.NOT_ACCEPTABLE);
+    }
+
+    @ExceptionHandler(InvalidDateException.class)
+    public ResponseEntity<String> handleInvalidDateException(InvalidDateException ex) {
+        return new ResponseEntity<>(ex.getMessage(),HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(CheckIsNotSuccessException.class)
+    public ResponseEntity<String> handleCheckIsNotSuccessException(CheckIsNotSuccessException ex) {
+        return new ResponseEntity<>(ex.getMessage(),HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(AppointmentNotFinishedException.class)
+    public ResponseEntity<String> handleAppointmentNotFinishedException(AppointmentNotFinishedException ex) {
+        return new ResponseEntity<>(ex.getMessage(),HttpStatus.BAD_REQUEST);
+    }
 }

@@ -1,13 +1,15 @@
 package com.example.healthtourismapplication.model.responseDTO;
 
 import com.example.healthtourismapplication.database.entity.HotelReservation;
-import lombok.Data;
+import lombok.*;
 
 import java.util.List;
 
-@Data
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class HotelResponse {
     private String name;
-    private String address;
-    private List<HotelReservation> hotelReservations;
+    private String location;
 }
