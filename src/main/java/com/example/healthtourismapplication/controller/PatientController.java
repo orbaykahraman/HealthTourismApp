@@ -5,6 +5,7 @@ import com.example.healthtourismapplication.model.responseDTO.PatientResponseDTO
 import com.example.healthtourismapplication.service.PatientService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -17,6 +18,7 @@ public class PatientController {
 
 
     @PostMapping()
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     public ResponseEntity<PatientResponseDTO> createPatient(@RequestBody PatientRequestDTO patientRequestDTO) {
         return patientService.createPatient(patientRequestDTO);
     }
@@ -32,6 +34,7 @@ public class PatientController {
     }
 
     @DeleteMapping("/{id}")
+    @PreAuthorize("hasAuthority('ROLE_ADMIN') or hasAuthority('ROLE_PATIENT')")
     public void deletePatientById(@PathVariable(name = "id") Long id) {
         patientService.deletePatientById(id);
     }

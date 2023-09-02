@@ -14,4 +14,5 @@ import java.util.List;
 public class DoctorResponse {
     private String nameSurname;
     private HospitalResponse hospital;
+    private String department;
 }

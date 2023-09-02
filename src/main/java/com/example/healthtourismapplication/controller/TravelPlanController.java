@@ -6,6 +6,7 @@ import com.example.healthtourismapplication.service.TravelPlanService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -15,6 +16,7 @@ public class TravelPlanController {
     private final TravelPlanService travelPlanService;
 
     @PostMapping
+    @PreAuthorize("hasAuthority('ROLE_PATIENT')")
     public ResponseEntity<TravelPlanResponse> createTravelPlan(@Valid TravelPlanRequest travelPlanRequest) {
         return travelPlanService.createTravelPlan(travelPlanRequest);
     }

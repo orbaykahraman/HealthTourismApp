@@ -6,6 +6,7 @@ import com.example.healthtourismapplication.service.HotelService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -17,6 +18,7 @@ public class HotelController {
     private final HotelService hotelService;
 
     @PostMapping
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     public ResponseEntity<HotelResponse> createHotel(@RequestBody @Valid HotelRequest hotelRequest){
         return hotelService.createHotel(hotelRequest);
     }
@@ -32,6 +34,7 @@ public class HotelController {
     }
 
     @DeleteMapping("/{id}")
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     public void deleteHotelById(@PathVariable(name = "id")Long id) {
         hotelService.deleteHotelById(id);
     }

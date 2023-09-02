@@ -15,6 +15,7 @@ import java.util.List;
 public class Doctor  extends BaseEntityWithoutAutoId {
 
     private String nameSurname;
+    private String department;
 
     @ManyToMany(fetch = FetchType.EAGER, cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH, CascadeType.ALL})
     @JoinTable(name = "doctor_patient",

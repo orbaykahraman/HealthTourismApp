@@ -16,6 +16,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -78,5 +79,20 @@ public class DoctorService {
     public Doctor getDoctorFromAuth(UserInfo userInfo) {
         Long doctorId = userInfo.getUserId();
         return doctorRepository.findById(doctorId).orElseThrow(() -> new NotFoundWithIdException("Doctor not found with id : " + doctorId));
+    }
+
+    public ResponseEntity<List<DoctorResponse>> findDoctorsByHospitalLocationAndDepartment(String location, String department) {
+        List<Hospital> hospitals = hospitalRepository.findByLocation(location);
+        List<Doctor> doctorsToReturn = new ArrayList<>();
+
+        for(Hospital h:hospitals) {
+            List<Doctor> doctors = h.getDoctors();
+            for(Doctor doctor : doctors) {
+                if(department.equals(doctor.getDepartment())) {
+                    doctorsToReturn.add(doctor);
+                }
+            }
+        }
+        return new ResponseEntity<>(mapper.doctorListToDoctorResponseList(doctorsToReturn),HttpStatus.OK);
     }
 }

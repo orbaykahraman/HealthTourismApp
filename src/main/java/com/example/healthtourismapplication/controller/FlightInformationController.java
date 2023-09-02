@@ -6,6 +6,7 @@ import com.example.healthtourismapplication.service.FlightInformationService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -15,10 +16,12 @@ public class FlightInformationController {
     private final FlightInformationService flightInformationService;
 
     @PostMapping
+    @PreAuthorize("hasAuthority('ROLE_PATIENT')")
     public ResponseEntity<FlightInformationResponse> createFlight(@RequestBody @Valid FlightInformationRequest flightInformationRequest) {
         return flightInformationService.createFlight(flightInformationRequest);
     }
     @DeleteMapping("/{id}")
+    @PreAuthorize("hasAuthority('ROLE_PATIENT')")
     public void deleteFlightInfoById(@PathVariable(name = "id") Long id) {
          flightInformationService.deleteById(id);
     }

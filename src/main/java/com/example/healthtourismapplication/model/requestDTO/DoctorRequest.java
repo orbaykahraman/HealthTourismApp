@@ -9,5 +9,7 @@ public class DoctorRequest {
     private String nameSurname;
     @NotNull
     private Long hospitalId;
+    @NotNull
+    private String department;
 
 }

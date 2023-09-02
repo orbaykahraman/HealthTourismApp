@@ -6,6 +6,7 @@ import com.example.healthtourismapplication.service.AirplaneService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -18,6 +19,7 @@ public class AirplaneController {
     private final AirplaneService airplaneService;
 
     @PostMapping
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     public ResponseEntity<AirplaneResponse> createAirPlane(@RequestBody @Valid AirplaneRequest airplaneRequest){
         return airplaneService.createAirPlane(airplaneRequest);
     }
@@ -32,6 +34,7 @@ public class AirplaneController {
     }
 
     @DeleteMapping("/{id}")
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     public void deleteAirPlaneById(@PathVariable(name = "id") Long id) {
         airplaneService.deleteAirPlaneById(id);
     }
