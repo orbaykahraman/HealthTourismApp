@@ -3,6 +3,7 @@ package com.example.healthtourismapplication.controller;
 import com.example.healthtourismapplication.model.requestDTO.HotelRequest;
 import com.example.healthtourismapplication.model.responseDTO.HotelResponse;
 import com.example.healthtourismapplication.service.HotelService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -14,6 +15,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/hotel")
 @RequiredArgsConstructor
+@Tag(name = "Hotel")
 public class HotelController {
     private final HotelService hotelService;
 

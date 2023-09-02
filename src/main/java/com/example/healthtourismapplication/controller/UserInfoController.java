@@ -2,8 +2,9 @@ package com.example.healthtourismapplication.controller;
 
 import com.example.healthtourismapplication.database.entity.UserInfo;
 import com.example.healthtourismapplication.model.requestDTO.AuthRequest;
-import com.example.healthtourismapplication.security.JWTService;
+import com.example.healthtourismapplication.config.JWTService;
 import com.example.healthtourismapplication.service.UserInfoService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/auth")
+@Tag(name = "User Info")
 public class UserInfoController {
 
     @Autowired

@@ -1,4 +1,4 @@
-package com.example.healthtourismapplication.security;
+package com.example.healthtourismapplication.config;
 
 import com.example.healthtourismapplication.service.UserInfoUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,9 +42,7 @@ public class SecurityConfig {
                 .authorizeHttpRequests()
                 .requestMatchers("/auth/**")
                 .permitAll()
-                .requestMatchers("/api/v1/accounts","/api/v1/users","/api/v1/users/**","/api/v1/users/authenticate"
-                        ,"/auth/**","/v2/api-docs","/v3/api-docs","/v3/api-docs/**","/swagger-resources"
-                        ,"/swagger-resources/**","/swagger-ui/**","/swagger-ui.html")
+                .requestMatchers("/auth/**","/v3/api-docs/**","/swagger-ui/**")
                 .permitAll()
                 .anyRequest()
                 .authenticated()

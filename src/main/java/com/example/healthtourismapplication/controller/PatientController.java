@@ -3,6 +3,7 @@ package com.example.healthtourismapplication.controller;
 import com.example.healthtourismapplication.model.requestDTO.PatientRequestDTO;
 import com.example.healthtourismapplication.model.responseDTO.PatientResponseDTO;
 import com.example.healthtourismapplication.service.PatientService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -13,6 +14,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/patient")
 @RequiredArgsConstructor
+@Tag(name = "Patient")
 public class PatientController {
     private final PatientService patientService;
 

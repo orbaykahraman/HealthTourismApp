@@ -3,6 +3,7 @@ package com.example.healthtourismapplication.controller;
 import com.example.healthtourismapplication.model.requestDTO.AppointmentRequest;
 import com.example.healthtourismapplication.model.responseDTO.AppointmentResponse;
 import com.example.healthtourismapplication.service.AppointmentService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -14,6 +15,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/appointment")
 @RequiredArgsConstructor
+@Tag(name = "Appointment")
 public class AppointmentController {
     private final AppointmentService appointmentService;
 
