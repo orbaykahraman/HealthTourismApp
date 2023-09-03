@@ -10,6 +10,8 @@ import io.micrometer.common.util.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -34,7 +36,7 @@ public class UserInfoService {
     private PasswordEncoder passwordEncoder;
 
 
-    public void register(UserInfo userInfo) {
+    public ResponseEntity<String> register(UserInfo userInfo) {
 
         logger.info("add user started");
 
@@ -60,6 +62,7 @@ public class UserInfoService {
             patient.setId(savedUser.getUserId());
             patientService.createPatientWhileRegister(patient);
             logger.info("Patient created");
+            return new ResponseEntity<>(String.valueOf(patient.getId()), HttpStatus.CREATED);
         }
         else if(userInfo.getRoles().equals("ROLE_DOCTOR")) {
             Doctor doctor = new Doctor();
@@ -67,7 +70,9 @@ public class UserInfoService {
             doctor.setId(savedUser.getUserId());
             doctorService.createDoctorWhileRegister(doctor);
             logger.info("Doctor created");
+            return new ResponseEntity<>(String.valueOf(doctor.getId()), HttpStatus.CREATED);
         }
+        return new ResponseEntity<>(null,HttpStatus.BAD_REQUEST);
     }
 
     public UserInfo getUserInfoFromAuth() {

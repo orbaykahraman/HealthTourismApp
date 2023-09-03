@@ -11,6 +11,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 public class AirplaneResponse {
+    private Long id;
     private String name;
     private Long seatNumber;
     private Long remainingSeats;

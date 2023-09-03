@@ -37,7 +37,7 @@ public class DoctorController {
 
     }
     @PutMapping("/{hospitalId}/{doctorId}")
-    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
+    @PreAuthorize("hasAuthority('ROLE_DOCTOR')")
     public ResponseEntity<DoctorResponse> addHospitalToDoctor(@PathVariable(name = "hospitalId") Long hospitalId,@PathVariable(name = "doctorId") Long doctorId){
         return doctorService.addHospitalToDoctor(hospitalId,doctorId);
     }

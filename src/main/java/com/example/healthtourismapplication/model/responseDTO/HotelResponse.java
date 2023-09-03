@@ -10,6 +10,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 public class HotelResponse {
+    private Long id;
     private String name;
     private String location;
 }

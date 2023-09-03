@@ -7,6 +7,7 @@ import com.example.healthtourismapplication.service.UserInfoService;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -31,8 +32,8 @@ public class UserInfoController {
     private AuthenticationManager authManager;
 
     @PostMapping("/register")
-    public void register(@RequestBody @Valid UserInfo userInfo) {
-        userInfoService.register(userInfo);
+    public ResponseEntity<String> register(@RequestBody @Valid UserInfo userInfo) {
+        return userInfoService.register(userInfo);
     }
 
     @PostMapping("/authenticate")

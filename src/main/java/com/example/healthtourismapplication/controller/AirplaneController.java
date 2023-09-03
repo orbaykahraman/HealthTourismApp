@@ -23,7 +23,7 @@ public class AirplaneController {
     @PostMapping
     @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     public ResponseEntity<AirplaneResponse> createAirPlane(@RequestBody @Valid AirplaneRequest airplaneRequest){
-        return airplaneService.createAirPlane(airplaneRequest);
+            return airplaneService.createAirPlane(airplaneRequest);
     }
 
     @GetMapping("/{id}")

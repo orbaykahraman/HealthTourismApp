@@ -12,7 +12,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 public class DoctorResponse {
+    private Long id;
     private String nameSurname;
-    private HospitalResponse hospital;
     private String department;
 }

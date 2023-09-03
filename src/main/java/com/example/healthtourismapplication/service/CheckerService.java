@@ -29,11 +29,11 @@ public class CheckerService {
 
 
     /*
-     * 60 saniyede bir çalışan ve appointment,hotelReservation,flightInfo tablolarından
+     * 30 saniyede bir çalışan ve appointment,hotelReservation,flightInfo tablolarından
      * Status = Waiting olan kayıtları alıp creationDate'leri 10dakikayı geçmişse bunları tabloda
      * status = cancelled olarak günceller..
      * */
-    @Scheduled(fixedRate = 60000)
+    @Scheduled(fixedRate = 30000)
     public void checkAndCancelAppointments() {
         log.info("Scheduled checkAndCancelAppointments started.");
         List<Appointment> appointments = appointmentRepository.findAllByStatus(Status.WAITING);

@@ -10,6 +10,8 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 public class HospitalResponse {
+    private Long id;
     private String name;
     private String location;
+    private List<DoctorResponse> doctors;
 }
